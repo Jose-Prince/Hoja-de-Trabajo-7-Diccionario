@@ -34,11 +34,17 @@ public class BST{
     }
 
     private boolean containsNodeRecursive(Node current, String value) {
+        String[] words = null; 
+
         if (current == null) {
             return false;
         }
 
-        if (value.compareTo(current.value.substring(0,value.length())) == 0){
+        if (current != null){
+            words = current.value.split(",");
+        }
+
+        if (value.equalsIgnoreCase(words[0])){
             return true;
         }
 
@@ -49,6 +55,30 @@ public class BST{
 
     public boolean containsNode(String value) {
         return containsNodeRecursive(root, value);
+    }
+
+    private String getNodeRecursive(Node current, String value) {
+        String[] words = null; 
+
+        if (current == null) {
+            return "*"+value+"*";
+        }
+
+        if (current != null){
+            words = current.value.split(",");
+        }
+
+        if (value.equalsIgnoreCase(words[0])){
+            return current.value;
+        }
+
+        return value.compareTo(current.value) < 0
+        ? getNodeRecursive(current.left, value)
+        : getNodeRecursive(current.right, value);
+    }
+
+    public String getNode(String value) {
+        return getNodeRecursive(root, value);
     }
 
     public void deleteKey(String value) {
