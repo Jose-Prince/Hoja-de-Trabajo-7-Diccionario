@@ -18,8 +18,10 @@ public class DiccionarioMain {
             File vocabulario = new File("diccionario");
             Scanner lector = new Scanner(vocabulario);
 
+            System.out.println("\nVocabulario:\n");
             while (lector.hasNextLine()){
                 String data = lector.nextLine().toLowerCase();
+                System.out.println(data);
                 ingles.add(data);
                 
                 String[] palabras = data.split(",");
@@ -49,71 +51,35 @@ public class DiccionarioMain {
                 String sentence = lector.nextLine().toLowerCase();
                 String[] palabras = sentence.split(" ");
                 for (String palabra : palabras) {
-                    if (ingles.containsNode(palabra) == true){
+                    if (ingles.containsNode(palabra) == true)
                         i += 1;   
-                    } 
                     else if (español.containsNode(palabra) == true)
                         e += 1;
                     else if (frances.containsNode(palabra) == true)
                         f += 1;
                 }
                 if (i >= e && i >= f){
-                    String traduccion1 = "";
-                    String traduccion2 = "";
+                    String idioma = "ingles";
+
                     System.out.println("\nLa oración por traducir es: " + sentence + ". Esta en el idioma inglés.");
-                    for (String palabra : palabras) {
-                        if(ingles.getNode(palabra).contains("*")){
-                            traduccion1 = traduccion1 + ingles.getNode(palabra) + " ";
-                            traduccion2 = traduccion2 + ingles.getNode(palabra) + " "; 
-                        } else {
-                            String word = ingles.getNode(palabra);
-                            String[] words = word.split(",");
-
-                            traduccion1 = traduccion1 + words[1] + " ";
-                            traduccion2 = traduccion2 + words[2] + " ";
-                        }
-
-                    }
-                    System.out.println("Traducción al español: " + traduccion1);
-                    System.out.println("traducción al francés: " + traduccion2);
+                    System.out.println("Traducción al español: " + asociacion.traduccionEs(palabras, idioma, ingles));
+                    System.out.println("traducción al francés: " + asociacion.traduccionFr(palabras, idioma, ingles));
                 }
                 else if (e >= i && e >= f) {
-                    String traduccion1 = "";
-                    String traduccion2 = "";
+                    String idioma = "español";
+            
                     System.out.println("\nLa oración por traducir es: " + sentence + ". Esta en el idioma español.");
-                    for (String palabra : palabras) {
-                        if(español.getNode(palabra).contains("*")){
-                            traduccion1 = traduccion1 + español.getNode(palabra) + " ";
-                            traduccion2 = traduccion2 + español.getNode(palabra) + " "; 
-                        } else {
-                            String word = español.getNode(palabra);
-                            String[] words = word.split(",");
-
-                            traduccion1 = traduccion1 + words[1] + " ";
-                            traduccion2 = traduccion2 + words[2] + " ";
-                        }
-                    }
-                    System.out.println("Traducción al inglés: " + traduccion1);
-                    System.out.println("traducción al francés: " + traduccion2);
+                    
+                    System.out.println("Traducción al inglés: " + asociacion.traduccionEn(palabras, idioma, español));
+                    System.out.println("traducción al francés: " + asociacion.traduccionFr(palabras, idioma, español));
                 }
                 else if (f >= i && f >= i) {
-                    String traduccion1 = "";
-                    String traduccion2 = "";
-                    System.out.println("\nLa oración por traducir es: " + sentence + ". Esta en el idioma inglés.");
-                    for (String palabra : palabras) {
-                        if(frances.getNode(palabra).contains("*")){
-                            traduccion1 = traduccion1 + frances.getNode(palabra) + " ";
-                            traduccion2 = traduccion2 + frances.getNode(palabra) + " "; 
-                        } else {
-                            String word = frances.getNode(palabra);
-                            String[] words = word.split(",");
+                    String idioma = "frances";
 
-                            traduccion1 = traduccion1 + words[1] + " ";
-                            traduccion2 = traduccion2 + words[2] + " ";
-                        }
-                    }
-                    System.out.println("Traducción al inglés: ");
-                    System.out.println("traducción al español: ");
+                    System.out.println("\nLa oración por traducir es: " + sentence + ". Esta en el idioma frances.");
+
+                    System.out.println("Traducción al inglés: " + asociacion.traduccionEn(palabras, idioma, frances));
+                    System.out.println("traducción al español: " + asociacion.traduccionEs(palabras, idioma, frances));
                 }
             }
 
@@ -122,5 +88,6 @@ public class DiccionarioMain {
             // TODO: handle exception
             System.out.println("An error ocurred");
         }
+        System.out.println("");
     }
 }

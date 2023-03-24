@@ -121,11 +121,12 @@ public class BST{
         inorder_Recursive(root);
     }
 
-    public void inorder_Recursive(Node root) {
+    public String inorder_Recursive(Node root) {
         if (root != null){
             inorder_Recursive(root.left);
             System.out.println(root.value + " ");
             inorder_Recursive(root.right);
         }
+        return "";
     }
 }
