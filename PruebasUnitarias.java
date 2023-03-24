@@ -1,3 +1,8 @@
+/**
+ * @author Jose Prince
+ * Algoritmos y Estructura de Datos
+ * @date 24/03/2023
+ */
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;

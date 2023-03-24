@@ -1,4 +1,11 @@
+/**
+ * @author Jose Prince
+ * Algoritmos y Estructura de Datos
+ * @date 24/03/2023
+ */
+
 public class BST{
+    //Crea la clase que genera los nodos del árbol
     class Node{
         String value;
         Node left;
@@ -14,6 +21,13 @@ public class BST{
 
     Node root;
 
+    
+    /** 
+     * @param current
+     * @param value
+     * @return Node
+     * Funcion recursiva para add
+     */
     private Node addRecursive (Node current, String value) {
         if (current == null) {
             return new Node(value);
@@ -29,10 +43,20 @@ public class BST{
         return current;
     }
 
+    /**
+     * @param value
+     * Añade un valor al árbol
+     */
     public void add(String value) {
         root = addRecursive(root, value);
     }
 
+    /**
+     * @param current
+     * @param value
+     * @return boolean
+     * Función recursiva para contains
+     */
     private boolean containsNodeRecursive(Node current, String value) {
         String[] words = null; 
 
@@ -53,10 +77,21 @@ public class BST{
         : containsNodeRecursive(current.right, value);
     }
 
+    /**
+     * @param value
+     * @return boolean
+     * Función que comprueba si el árbol contiene el valor deseado
+     */
     public boolean containsNode(String value) {
         return containsNodeRecursive(root, value);
     }
 
+    /**
+     * @param current
+     * @param value
+     * @return String
+     * Función recursiva pra getNode
+     */
     private String getNodeRecursive(Node current, String value) {
         String[] words = null; 
 
@@ -77,14 +112,29 @@ public class BST{
         : getNodeRecursive(current.right, value);
     }
 
+    /**
+     * @param value
+     * @return String
+     * Función que obtiene el valor del nodo deseado
+     */
     public String getNode(String value) {
         return getNodeRecursive(root, value);
     }
 
+    /**
+     * @param value
+     * Función que elimina el elemento indicado del árbol
+     */
     public void deleteKey(String value) {
         root = delete_Recursive(root, value);
     }
 
+    /**
+     * @param root
+     * @param value
+     * @return Node
+     * Funcion recursiva para delete
+     */
     Node delete_Recursive(Node root, String value) {
         
         if (root == null) 
@@ -117,16 +167,22 @@ public class BST{
         return minVal;
     } 
 
+    /**
+     * Función que ordena los valores del árbol en el formato inOrder
+     */
     public void inorder() {
         inorder_Recursive(root);
     }
 
-    public String inorder_Recursive(Node root) {
+    /**
+     * @param root
+     * Función recursiva para inOrder
+     */
+    public void inorder_Recursive(Node root) {
         if (root != null){
             inorder_Recursive(root.left);
             System.out.println(root.value + " ");
             inorder_Recursive(root.right);
         }
-        return "";
     }
 }

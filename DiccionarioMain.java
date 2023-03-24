@@ -1,11 +1,19 @@
+/**
+ * @author Jose Prince
+ * Algoritmos y Estructura de Datos
+ * @date 24/03/2023
+ */
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
 
-import structure5.BinarySearchTree;
-
 public class DiccionarioMain {
+    
+    /** 
+     * @param args
+     * @throws IOException
+     */
     public static void main(String[] args) throws IOException {
         Association<String, String> asociacion = new Association<String, String>();
         
